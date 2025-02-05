@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -199,7 +200,7 @@ public class TrianguloUI extends javax.swing.JFrame {
     public static boolean isTriangle(double a, double b, double c) {
         return a + b > c && a + c > b && b + c > a;
     }
-    
+
     public static String typeTriangle(double a, double b, double c) {
         if (a == b && b == c) {
             return "EQUILÁTERO";
@@ -209,12 +210,13 @@ public class TrianguloUI extends javax.swing.JFrame {
             return "ESCALENO";
         }
     }
-    
+
     public static double areaTriangle(double a, double b, double c) {
         double p = (a + b + c) / 2;
+
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
-    
+
     private void aTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_aTFActionPerformed
@@ -228,19 +230,27 @@ public class TrianguloUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cTFActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        double a = Double.parseDouble(aTF.getText());
-        double b = Double.parseDouble(bTF.getText());
-        double c = Double.parseDouble(cTF.getText());
-        
-        if (isTriangle(a, b, c)) {
-            tipoLabel.setText("Tipo = " + typeTriangle(a, b, c));
-            areaLabel.setText(String.format("Área = %.4f", areaTriangle(a, b, c)));
+
+        if (aTF.getText().equals("") || bTF.getText().equals("") || cTF.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite todos os valores!", "Erro",
+                    //WARNING, ERROR, INFORMATION, QUESTION, PLAIN
+                    JOptionPane.ERROR_MESSAGE);
         } else {
-            tipoLabel.setText("Não é um triângulo!");
-            tipoLabel.setForeground(Color.red);
-            areaLabel.setText("");
+            double a = Double.parseDouble(aTF.getText());
+            double b = Double.parseDouble(bTF.getText());
+            double c = Double.parseDouble(cTF.getText());
+
+            if (isTriangle(a, b, c)) {
+                tipoLabel.setText("Tipo = " + typeTriangle(a, b, c));
+
+                areaLabel.setText(String.format("A = %.2f", areaTriangle(a, b, c)));
+            } else {
+                tipoLabel.setText("Não é um triângulo!");
+                tipoLabel.setForeground(Color.red);
+            }
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -248,9 +258,10 @@ public class TrianguloUI extends javax.swing.JFrame {
         aTF.setText("");
         bTF.setText("");
         cTF.setText("");
-        tipoLabel.setText("Tipo de triângulo: ?");
-        tipoLabel.setForeground(new Color(51, 51, 51));
-        areaLabel.setText("Área: ?");
+
+        tipoLabel.setText("Tipo de triângulo = ?");
+        areaLabel.setText("A = ?");
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
