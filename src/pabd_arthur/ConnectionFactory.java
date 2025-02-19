@@ -19,7 +19,7 @@ public class ConnectionFactory {
     public ConnectionFactory(){
         this. url = "jdbc:mysql://localhost/sakila"; //dps do local host vem o nome do banco de dados
         this.usr = "root";
-        this.pwd = "arthur120";
+        this.pwd = "1234";
     }
     
     public Connection getConnection() throws SQLException {

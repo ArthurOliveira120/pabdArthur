@@ -19,11 +19,19 @@ public class Customer {
     private int active;
     private Timestamp create_date;
     private Timestamp last_update;
-    
-    public Customer() {
-        
-    }
 
+    public Customer(int customer_id, int store_id, String first_name, String last_name, String email, int address_id, int active, Timestamp create_date, Timestamp last_update) {
+        this.customer_id = customer_id;
+        this.store_id = store_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.address_id = address_id;
+        this.active = active;
+        this.create_date = create_date;
+        this.last_update = last_update;
+    }
+    
     public Customer(int store_id, String first_name, String last_name, String email, int address_id, int active) {
         this.store_id = store_id;
         this.first_name = first_name;
@@ -161,14 +169,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Store id: " + this.getStore_id()
-                + "\nFirst name: " + this.getFirst_name()
-                + "\nLast name: " + this.getLast_name()
-                + "\nEmail: " + this.getEmail()
-                + "\nAddress id: " + this.getAddress_id()
-                + "\nActive: " + (this.getActive() == 1 ? "true" : "false")
-                + "\n============================================================";
+        return "Customer{" + "customer_id=" + customer_id + ", store_id=" + store_id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + ", address_id=" + address_id + ", active=" + active + ", create_date=" + create_date + ", last_update=" + last_update + '}';
     }
-    
     
 }

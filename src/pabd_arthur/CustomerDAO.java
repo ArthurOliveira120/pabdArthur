@@ -85,25 +85,25 @@ public class CustomerDAO {
     public List<Customer> getCustomers() throws SQLException {
         List<Customer> customers = new ArrayList<>();
         
-        String query = "select * from customer limit 10";
+        String query = "select * from customer"
+                + " order by customer_id desc";
+        
         Statement st = con.createStatement();
         
         ResultSet rs = st.executeQuery(query);
         
-        ResultSetMetaData md = rs.getMetaData();
-        int col = md.getColumnCount();
-        
         while (rs.next()) {
-            Customer c = new Customer();
-            
-            c.setStore_id(rs.getInt(2));
-            c.setFirst_name(rs.getString(3));
-            c.setLast_name(rs.getString(4));
-            c.setEmail(rs.getString(5));
-            c.setAddress_id(rs.getInt(6));
-            c.setActive(rs.getInt(7));
-            
-            customers.add(c);
+            customers.add(new Customer(
+                    rs.getInt(1),
+                    rs.getInt(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getInt(6),
+                    rs.getInt(7),
+                    rs.getTimestamp(8),
+                    rs.getTimestamp(9)
+            ));
         }
         
         return customers;
